@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>Başvuran Bilgilendirildi</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+
+    <h1>Başvurana aşağıdaki mail gönderildi.</h1>
+    <p th:text="${mail}"></p>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

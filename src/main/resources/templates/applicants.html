@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>Başvurular</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+    <h1 class="h-margin">Başvurular</h1>
+    <div class="row-margin row" th:each="jobApplicant : ${applicants}">
+        <hr>
+        <div class="col-md-2">
+            <img class="img-fluid" th:src="${jobApplicant.applicant.pictureUrl}">
+            <a class="btn btn-primary a-margin" th:href="@{'/applicants/' + ${jobApplicant.applicant.id}}">Profil</a>
+        </div>
+        <div class="col-md-10">
+            <h3 th:text="${jobApplicant.applicant.getName()}">Name</h3>
+            <p th:text="${jobApplicant.applicant.headline}">Headline</p>
+            <p th:if="${jobApplicant.getStatus().toString() != 'ACTIVE'}" th:text="'Başvuru durumu: ' + ${jobApplicant.getStatusString()}">
+                Durum
+            </p>
+            <div th:if="${jobApplicant.getStatus().toString() == 'ACTIVE'}">
+                <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/applicants/' + ${jobApplicant.applicant.id} + '/accept'}">Kabul Et</a>
+                <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/applicants/' + ${jobApplicant.applicant.id} + '/reject'}">Reddet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>İlan</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+
+    <div class="row-margin row">
+        <div class="col-md-2">
+            <img class="img-fluid" src="https://cdn3.iconfinder.com/data/icons/business-management-15/33/jobs-512.png">
+        </div>
+        <div class="col-md-10">
+            <h1 th:text="${job.title}">Title</h1>
+            <p th:text="${job.description}">Açıklama</p>
+            <p class="font-weight-light" th:if="${session.user.userType.toString()} == 'VISITOR'">
+                Başvuru yapabilmek için önce giriş yapmalısınız.
+            </p>
+            <div th:if="${session.user.userType.toString()} == 'APPLICANT'">
+                <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/apply'}" th:if="!${status}">
+                    Başvur
+                </a>
+                <p th:if="${status}" th:text="'Başvuru durumu: ' + ${status}">
+                    Durum
+                </p>
+            </div>
+            <div th:if="${session.user.userType.toString()} == 'HR_EXPERT'">
+                <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/edit'}">Düzenle</a>
+                <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/applicants'}">Başvuruları Görüntüle</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

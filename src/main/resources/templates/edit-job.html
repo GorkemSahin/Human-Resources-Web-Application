@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>İlan</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+
+    <h1>İlan Düzenleme</h1>
+    <form action="#" th:action="@{'/jobs/' + ${job.id} + '/edit'}" th:object="${job}" method="post">
+        <p>Başlık: <input type="text" th:field="*{title}" /></p>
+        <p>Detaylar: <input type="text" th:field="*{description}" /></p>
+        <p><input type="submit" value="Kaydet" /> <input type="reset" value="Reset" /></p>
+    </form>
+    <a class="btn btn-primary" th:href="@{'/jobs/' + ${job.id} + '/delete'}">İlanı Yayından Kaldır</a>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

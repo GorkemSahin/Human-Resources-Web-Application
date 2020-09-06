@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+    <h1 class="h-margin">Kayıtlı Kullanıcılar</h1>
+    <div class="row-margin row" th:each="applicant : ${applicants}">
+        <hr>
+        <div class="col-md-2">
+            <img class="img-fluid" th:src="${applicant.pictureUrl}">
+        </div>
+        <div class="col-md-10">
+            <h3 th:text="${applicant.getName()}">Name</h3>
+            <p th:text="${applicant.headline}">Headline</p>
+            <a class="btn btn-primary a-margin center-block" th:href="@{'/applicants/' + ${applicant.id}}">Profil</a>
+            <a th:if="${applicant.blacklisted} == false" class="btn btn-primary a-margin center-block" th:href="@{'/applicants/' + ${applicant.id} + '/blacklist'}">Kara Listeye Al</a>
+            <a th:if="${applicant.blacklisted}" class="btn btn-primary a-margin center-block" th:href="@{'/applicants/' + ${applicant.id} + '/blacklist'}">Kara Listeden Çıkar</a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

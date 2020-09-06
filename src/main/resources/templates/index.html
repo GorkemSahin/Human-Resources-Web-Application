@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <div th:replace="fragments/head :: head"></div>
+  <title>İnsan Kaynakları</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+  <h1 class="h-margin">Hoşgeldiniz!</h1>
+
+  <h4 class="h-margin">Hayallerinizdeki işi bulun.</h4>
+  <hr>
+  
+  <img src="https://provalisresearch.com/uploads/21-Jan-2015-Human-Resources.jpg">
+  <hr>
+
+  <h4 class="h-margin" th:text="${jobNo + ' adet iş ilanı ve ' + applicantNo + ' adet kayıtlı kullanıcı ile aradığınız işi ya da çalışanı hemen bulun!'}"></h4>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

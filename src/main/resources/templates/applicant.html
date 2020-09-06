@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="fragments/head :: head"></div>
+    <title>Başvuran Profili</title>
+</head>
+
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container">
+    <h1 class="h-margin">Başvuran Profili</h1>
+    <div class="row-margin row">
+        <div class="col-md-2">
+            <img class="img-fluid" th:src="${applicant.pictureUrl}">
+            <a th:if="${applicant.blacklisted} == false" class="btn btn-primary a-margin" th:href="@{'/applicants/' + ${applicant.id} + '/blacklist'}">
+                Kara Listeye Al</a>
+            <a th:if="${applicant.blacklisted}" class="btn btn-primary a-margin" th:href="@{'/applicants/' + ${applicant.id} + '/blacklist'}">
+                Kara Listeden Çıkar</a>
+        </div>
+        <div class="col-md-10">
+            <h2 th:text="${applicant.getName()}">Name</h2>
+            <h3 th:text="${applicant.headline}">Headline</h3>
+            <p th:text="${applicant.summary}"></p>
+        </div>
+    </div>
+    <h4>Başvurulan İlanlar</h4>
+    <div class="row-margin row">
+        <div class="col-md-4" th:each="jobApplicant : ${applicant.jobs}">
+            <img class="img-fluid img-thumbnail" src="https://cdn3.iconfinder.com/data/icons/business-management-15/33/jobs-128.png">
+            <h4 th:text="${jobApplicant.job.title}">Title</h4>
+            <p th:text="${jobApplicant.job.description}">Açıklama</p>
+            <p th:text="'Başvuru durumu: ' + ${jobApplicant.statusString}">Açıklama</p>
+            <a class="btn btn-primary" th:href="@{'/jobs/' + ${jobApplicant.job.id}}">Detaylar</a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
